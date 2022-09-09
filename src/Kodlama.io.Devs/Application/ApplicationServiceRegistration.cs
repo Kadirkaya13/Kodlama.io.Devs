@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.Technologies.Rules;
+using Application.Features.Users.Rules;
+using Core.Security.JWT;
+using Application.Services.AuthService;
 
 namespace Application
 {
@@ -23,6 +26,10 @@ namespace Application
 
             services.AddScoped<ProgrammingLanguageBusinessRules>();
             services.AddScoped<TechnologyBusinessRules>();
+            services.AddScoped<UserBusinessRules>();
+
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<ITokenHelper, JwtHelper>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));

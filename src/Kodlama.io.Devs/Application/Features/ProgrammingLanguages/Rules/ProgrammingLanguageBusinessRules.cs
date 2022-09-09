@@ -1,5 +1,5 @@
 ﻿using Application.Services.Repositories;
-using Application.Utility;
+using Application.GlobalConstants;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Persistence.Paging;
 using Domain.Entities;
