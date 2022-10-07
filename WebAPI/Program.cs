@@ -5,6 +5,7 @@ using Core.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);

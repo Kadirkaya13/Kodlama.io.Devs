@@ -14,6 +14,8 @@ using Application.Features.Users.Rules;
 using Core.Security.JWT;
 using Application.Services.AuthService;
 using Application.Features.Auths.Rules;
+using Application.Features.OperationClaims.Rules;
+using Application.Features.UserOperationClaims.Rules;
 
 namespace Application
 {
@@ -26,9 +28,16 @@ namespace Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddScoped<ProgrammingLanguageBusinessRules>();
+
             services.AddScoped<TechnologyBusinessRules>();
+
             services.AddScoped<UserBusinessRules>();
+
             services.AddScoped<AuthBusinessRules>();
+
+            services.AddScoped<OperationClaimBusinessRules>();
+
+            services.AddScoped<UserOperationClaimBusinessRules>();
 
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ITokenHelper, JwtHelper>();
