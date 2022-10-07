@@ -32,7 +32,7 @@ namespace Application.Features.UserOperationClaims.Commands.CreateUserOperationC
 
             public async Task<CreatedUserOperationClaimDto> Handle(CreateUserOperationClaimCommand request, CancellationToken cancellationToken)
             {
-                _userOperationClaimBusinessRules.UserCanNotTakeSameClaimIfAlreadyTaken(request.UserId,request.OperationClaimId);
+                //_userOperationClaimBusinessRules.UserCanNotTakeSameClaimIfAlreadyTaken(request.UserId,request.OperationClaimId);
 
                 UserOperationClaim mappedUserOperationClaim = _mapper.Map<UserOperationClaim>(request);
                 UserOperationClaim createdUserOperationClaim = await _userOperationClaimRepository.AddAsync(mappedUserOperationClaim);
