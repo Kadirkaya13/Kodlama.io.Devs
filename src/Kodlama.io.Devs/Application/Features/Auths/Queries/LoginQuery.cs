@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Auths.Queries
 {
-    public class LoginQuery:IRequest<LoginedDto>
+    public class LoginQuery:IRequest<RefreshedTokenDto>
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public class LoginQueryHandler : IRequestHandler<LoginQuery, LoginedDto>
+        public class LoginQueryHandler : IRequestHandler<LoginQuery, RefreshedTokenDto>
         {
             private readonly IUserRepository _userRepository;
             private readonly IAuthService _authService;
@@ -33,7 +33,7 @@ namespace Application.Features.Auths.Queries
                 _userBusinessRules = userBusinessRules;
             }
 
-            public async Task<LoginedDto> Handle(LoginQuery request, CancellationToken cancellationToken)
+            public async Task<RefreshedTokenDto> Handle(LoginQuery request, CancellationToken cancellationToken)
             {
                 await _userBusinessRules.UserShouldExistWhenRequested(request.Email);
 
@@ -44,7 +44,7 @@ namespace Application.Features.Auths.Queries
 
                 AccessToken accessToken = await _authService.CreateAccessToken(user);
 
-                return new LoginedDto { AccessToken = accessToken };
+                return new RefreshedTokenDto { AccessToken = accessToken };
             }
         }
     }

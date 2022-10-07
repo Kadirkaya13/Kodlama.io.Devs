@@ -12,6 +12,6 @@ namespace Application.Features.Users.Dtos
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string GitHubUrl { get; set; }
+        public string GitHubAdress { get; set; }
     }
 }

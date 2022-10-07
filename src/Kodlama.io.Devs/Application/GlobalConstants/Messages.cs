@@ -15,6 +15,7 @@ namespace Application.GlobalConstants
         public static string EmailAlreadyExist = "Email adress already taken.";
         public static string UserNotFound = "This user not exists.";
         public static string WrongInformation = "Email or password wrong please check again.";
+        
 
     }
 }

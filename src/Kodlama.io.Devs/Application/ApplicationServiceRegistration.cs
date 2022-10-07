@@ -13,6 +13,7 @@ using Application.Features.Technologies.Rules;
 using Application.Features.Users.Rules;
 using Core.Security.JWT;
 using Application.Services.AuthService;
+using Application.Features.Auths.Rules;
 
 namespace Application
 {
@@ -27,6 +28,7 @@ namespace Application
             services.AddScoped<ProgrammingLanguageBusinessRules>();
             services.AddScoped<TechnologyBusinessRules>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<AuthBusinessRules>();
 
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ITokenHelper, JwtHelper>();

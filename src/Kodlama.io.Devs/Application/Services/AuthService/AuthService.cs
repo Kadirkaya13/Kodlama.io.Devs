@@ -14,12 +14,20 @@ namespace Application.Services.AuthService
     public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
-        readonly ITokenHelper _tokenHelper;
+        private readonly ITokenHelper _tokenHelper;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-        public AuthService(ITokenHelper tokenHelper, IUserRepository userRepository)
+        public AuthService(IUserRepository userRepository, ITokenHelper tokenHelper, IRefreshTokenRepository refreshTokenRepository)
         {
-            _tokenHelper = tokenHelper;
             _userRepository = userRepository;
+            _tokenHelper = tokenHelper;
+            _refreshTokenRepository = refreshTokenRepository;
+        }
+
+        public async Task<RefreshToken> AddRefreshToken(RefreshToken refreshToken)
+        {
+            RefreshToken addedRefreshToken = await _refreshTokenRepository.AddAsync(refreshToken);
+            return addedRefreshToken;
         }
 
         public async Task<AccessToken> CreateAccessToken(ExtendedUser User)
@@ -34,6 +42,12 @@ namespace Application.Services.AuthService
             AccessToken accessToken = _tokenHelper.CreateToken(user, operationClaims.ToList());
 
             return accessToken;
+        }
+
+        public async Task<RefreshToken> CreateRefreshToken(ExtendedUser user, string ipAddress)
+        {
+            RefreshToken refreshToken = _tokenHelper.CreateRefreshToken(user, ipAddress);
+            return await Task.FromResult(refreshToken);
         }
     }
 }

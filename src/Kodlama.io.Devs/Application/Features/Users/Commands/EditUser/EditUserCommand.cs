@@ -19,7 +19,7 @@ namespace Application.Features.Users.Commands.EditUser
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string GitHubUrl { get; set; }
+        public string GitHubAdress { get; set; }
 
         public class EditUserCommandHandler : IRequestHandler<EditUserCommand, EditedUserDto>
         {

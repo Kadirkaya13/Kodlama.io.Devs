@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Auths.Dtos
+namespace Application.Features.Auths.Commands.RegisterUser
 {
-    public class RefreshedTokenDto
+    public class RefreshTokenDto
     {
         public AccessToken AccessToken { get; set; }
         public RefreshToken RefreshToken { get; set; }

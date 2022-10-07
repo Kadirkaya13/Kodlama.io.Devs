@@ -1,4 +1,5 @@
-﻿using Core.Security.JWT;
+﻿using Application.Features.Auths.Commands.RegisterUser;
+using Core.Security.JWT;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Auths.Dtos
 {
-    public class RegisteredDto
+    public class RegisteredDto:RefreshTokenDto
     {
-        public AccessToken AccessToken { get; set; }
     }
 }

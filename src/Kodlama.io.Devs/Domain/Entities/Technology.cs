@@ -18,10 +18,10 @@ namespace Domain.Entities
 
         }
 
-        public Technology(int id, int ProgrammingLanguageId, string name):this()
+        public Technology(int id, int programmingLanguageId, string name):this()
         {
             Id= id;
-            ProgrammingLanguageId = ProgrammingLanguageId;
+            ProgrammingLanguageId = programmingLanguageId;
             Name = name;
             
         }
