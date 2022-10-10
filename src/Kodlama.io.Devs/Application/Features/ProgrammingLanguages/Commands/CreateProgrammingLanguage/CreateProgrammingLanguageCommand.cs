@@ -2,6 +2,7 @@
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -22,6 +23,7 @@ namespace Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLa
             private readonly IProgrammingLanguageRepository _ProgrammingLanguageRepository;
             private readonly IMapper _mapper;
             private readonly ProgrammingLanguageBusinessRules _ProgrammingLanguageBusinessRules;
+            
 
             
 
@@ -34,6 +36,7 @@ namespace Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLa
 
             public async Task<CreatedProgrammingLanguageDto> Handle(CreateProgrammingLanguageCommand request,CancellationToken cancellationToken)
             {
+                
                 await _ProgrammingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDublicatedWhenInserted(request.LanguageName);
 
                 ProgrammingLanguage mappedProgrammingLanguage =_mapper.Map<ProgrammingLanguage>(request);

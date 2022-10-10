@@ -28,7 +28,7 @@ namespace Application.Features.UserOperationClaims.Commands.EditUserOperationCla
 
             public async Task<EditedUserOperationClaimDto> Handle(EditUserOperationClaimCommand request, CancellationToken cancellationToken)
             {
-                //await _userOperationClaimBusinessRules.UserCanNotTakeSameClaimIfAlreadyTaken(request.UserId,request.OperationClaimId);
+                await _userOperationClaimBusinessRules.UserCanNotTakeSameClaimIfAlreadyTaken(request.UserId,request.OperationClaimId);
 
                 UserOperationClaim mappedUserOperetionClaim = _mapper.Map<UserOperationClaim>(request);
                 UserOperationClaim editedUserOperationClaim = await _userOperationClaimRepository.UpdateAsync(mappedUserOperetionClaim);

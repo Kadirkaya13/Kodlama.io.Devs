@@ -5,9 +5,12 @@ using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Models;
 using Application.Features.ProgrammingLanguages.Quaries.GetByIdProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Quaries.GetListProgrammingLanguage;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.WebSockets;
 
 namespace WebAPI.Controllers
 {
@@ -16,9 +19,10 @@ namespace WebAPI.Controllers
     public class ProgrammingLanguagesController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateProgrammingLanguageCommand createBrandCommand)
+        public async Task<IActionResult> Add([FromBody] CreateProgrammingLanguageCommand createProgrammingLanguageCommand)
         {
-            CreatedProgrammingLanguageDto result = await Mediator.Send(createBrandCommand);
+            CreatedProgrammingLanguageDto result = await Mediator.Send(createProgrammingLanguageCommand);
+            
             return Created("", result);
         }
         [HttpDelete("{Id}")]

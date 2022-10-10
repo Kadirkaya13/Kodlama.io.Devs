@@ -1,5 +1,4 @@
-﻿using Application.Features.Auths.Commands.RegisterUser;
-using Core.Security.JWT;
+﻿using Core.Security.JWT;
 using System;
 using System.Collections.Generic;
 using System.Linq;

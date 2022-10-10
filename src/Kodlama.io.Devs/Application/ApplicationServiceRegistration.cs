@@ -16,6 +16,7 @@ using Application.Services.AuthService;
 using Application.Features.Auths.Rules;
 using Application.Features.OperationClaims.Rules;
 using Application.Features.UserOperationClaims.Rules;
+using Core.Application.Pipelines.Authorization;
 
 namespace Application
 {
@@ -43,7 +44,7 @@ namespace Application
             services.AddTransient<ITokenHelper, JwtHelper>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));

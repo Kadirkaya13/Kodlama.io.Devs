@@ -13,9 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 builder.Services.AddApplicationServices();
 builder.Services.AddSecurityServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
+
 //builder.Services.AddInfrastructureServices();
 builder.Services.AddHttpContextAccessor();
 
@@ -32,6 +34,30 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidAudience = tokenOptions.Audience,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            Console.WriteLine("OnChallange: ");
+            return Task.CompletedTask;
+        },
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine("OnAuthenticationFailed:");
+            return Task.CompletedTask;
+        },
+        OnMessageReceived = context =>
+        {
+            Console.WriteLine("OnMessageReceived:");
+            return Task.CompletedTask;
+        },
+        OnTokenValidated = context =>
+        {
+            Console.WriteLine("OnTokenValidated:");
+            return Task.CompletedTask;
+        },
     };
 });
 
@@ -73,9 +99,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.ConfigureCustomExceptionMiddleware();
+if (app.Environment.IsProduction())
+    app.ConfigureCustomExceptionMiddleware();
+
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

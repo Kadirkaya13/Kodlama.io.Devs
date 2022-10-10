@@ -1,6 +1,7 @@
 ﻿using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -14,6 +15,8 @@ namespace Application.Features.ProgrammingLanguages.Quaries.GetByIdProgrammingLa
     public class GetByIdProgrammingLanguageQuery:IRequest<ProgrammingLanguageGetByIdDto>
     {
         public int Id { get; set; }
+        
+
 
         public class GetByIdProgrammingLanguageHandler: IRequestHandler<GetByIdProgrammingLanguageQuery, ProgrammingLanguageGetByIdDto>
         {
